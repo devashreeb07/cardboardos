@@ -7,8 +7,6 @@ data analytics, and machine learning in a real-world industrial context.
 
 ---
 
-## Live Demo
-🔗 Coming soon (deploying on Day 15)
 
 **Demo credentials:**
 - Email: `admin@cardboardos.com`
@@ -200,4 +198,4 @@ calculates utilization %, and visualizes layout on HTML Canvas.
 ---
 
 ## Author
-Built by Devashree as my capstone project.
+Built by Devashree as my project.
