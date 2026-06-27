@@ -1,0 +1,34 @@
+# Virtual environment
+venv/
+
+# Environment variables (never commit passwords)
+.env
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Database files
+*.db
+*.sqlite3
+
+# ML model files (large, regenerated at runtime)
+*.pkl
+*.joblib
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Pytest
+.pytest_cache/
+
+# Distribution
+dist/
+build/
+*.egg-info/
