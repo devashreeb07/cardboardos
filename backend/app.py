@@ -12,10 +12,12 @@ from routes.waste import waste_bp
 from routes.ai import ai_bp
 from routes.esg import esg_bp
 from routes.boxoptimizer import boxoptimizer_bp
+import os
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:sql1234@localhost:5432/cardboardos_db'
+import os
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'postgresql://postgres:YOUR_PASSWORD@localhost:5432/cardboardos_db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JWT_SECRET_KEY'] = 'cardboardos-secret-key-2024'
 
