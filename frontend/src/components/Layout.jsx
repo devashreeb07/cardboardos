@@ -13,6 +13,8 @@ const navItems = [
   { path: '/forecast',    label: '🤖 AI Forecast'   },
   { path: '/boxoptimizer', label: '📐 Box Optimizer' },
   { path: '/waste-insights', label: '🔍 Waste ML' },
+  { path: '/customers', label: '👥 Customers' },
+  { path: '/reorder', label: '📦 Reorder Alerts' },
 ]
 
 export default function Layout() {

@@ -46,11 +46,23 @@ def login():
     if not user or not bcrypt.check_password_hash(user.password_hash, data['password']):
         return jsonify({'error': 'Invalid email or password'}), 401
 
-    access_token = create_access_token(identity=str(user.id), additional_claims={'role': user.role, 'name': user.name})
+    # ← Block customer accounts from admin portal
+    if user.role == 'customer':
+        return jsonify({'error': 'Please use the Customer Portal to login'}), 403
+
+    access_token = create_access_token(
+        identity=str(user.id),
+        additional_claims={'role': user.role, 'name': user.name}
+    )
 
     return jsonify({
         'access_token': access_token,
-        'user': {'id': user.id, 'name': user.name, 'email': user.email, 'role': user.role}
+        'user': {
+            'id':    user.id,
+            'name':  user.name,
+            'email': user.email,
+            'role':  user.role
+        }
     }), 200
 
 

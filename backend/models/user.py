@@ -1,20 +1,28 @@
 from extensions import db
-from datetime import datetime
+from datetime import datetime, timezone
+
 
 class User(db.Model):
     __tablename__ = 'users'
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password_hash = db.Column(db.String(255), nullable=False)
-    role = db.Column(db.String(50), default='manager')  # manager, operator, admin
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    id           = db.Column(db.Integer, primary_key=True)
+    name         = db.Column(db.String(100), nullable=False)
+    email        = db.Column(db.String(120), unique=True, nullable=False)
+    password_hash= db.Column(db.String(255), nullable=False)
+    role         = db.Column(db.String(50), default='manager')  # admin, manager, operator, customer
+    company_name = db.Column(db.String(150), nullable=True)
+    phone        = db.Column(db.String(20), nullable=True)
+    address      = db.Column(db.String(255), nullable=True)
+    created_at   = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
 
     def to_dict(self):
         return {
-            'id': self.id,
-            'name': self.name,
-            'email': self.email,
-            'role': self.role
+            'id':           self.id,
+            'name':         self.name,
+            'email':        self.email,
+            'role':         self.role,
+            'company_name': self.company_name,
+            'phone':        self.phone,
+            'address':      self.address,
+            'created_at':   self.created_at.isoformat() if self.created_at else None,
         }

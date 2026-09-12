@@ -12,6 +12,9 @@ from routes.waste import waste_bp
 from routes.ai import ai_bp
 from routes.esg import esg_bp
 from routes.boxoptimizer import boxoptimizer_bp
+from routes.customers import customers_bp
+from routes.reorder import reorder_bp
+from routes.customer_portal import customer_portal_bp
 import os
 
 app = Flask(__name__)
@@ -19,7 +22,7 @@ app = Flask(__name__)
 # Configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
     'DATABASE_URL',
-    'postgresql://postgres:YOUR_LOCAL_PASSWORD@localhost:5432/cardboardos_db'
+    'postgresql://postgres:sql1234@localhost:5432/cardboardos_db'
 )
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY', 'cardboardos-secret-key-2024')
@@ -42,7 +45,9 @@ app.register_blueprint(waste_bp,         url_prefix='/api/waste')
 app.register_blueprint(ai_bp,            url_prefix='/api/ai')
 app.register_blueprint(esg_bp,           url_prefix='/api/esg')
 app.register_blueprint(boxoptimizer_bp,  url_prefix='/api/boxoptimizer')
-
+app.register_blueprint(customers_bp,     url_prefix='/api/customers')
+app.register_blueprint(reorder_bp, url_prefix='/api/reorder')
+app.register_blueprint(customer_portal_bp, url_prefix='/api/customer')
 
 @app.route('/')
 def home():
